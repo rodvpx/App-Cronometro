@@ -2,6 +2,7 @@ package com.example.atvcronometro
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.TextureView
 import android.view.View
 import android.widget.Button
@@ -23,17 +24,39 @@ class MainActivity : AppCompatActivity() {
     private var execution = false
     private lateinit var job: Job
 
+    private val TAG: String = "si"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        if (savedInstanceState != null) {
+            elapsedBeforePause = savedInstanceState.getLong("elapsedBeforePause")
+            execution = savedInstanceState.getBoolean("execution")
+            startTime = savedInstanceState.getLong("startTime")
+
+            val startButtonText = savedInstanceState.getString("startButtonText")
+            if (startButtonText != null) {
+                findViewById<Button>(R.id.buttonStart).text = startButtonText
+            }
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-
         }
+        Log.i(TAG, "Log de informação")
         runTimer()
+    }
+
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+        savedInstanceState.putLong("elapsedBeforePause", elapsedBeforePause)
+        savedInstanceState.putBoolean("execution", execution)
+        savedInstanceState.putLong("startTime", startTime)
+        val startButton = findViewById<Button>(R.id.buttonStart)
+        savedInstanceState.putString("startButtonText", startButton.text.toString())
     }
 
 
