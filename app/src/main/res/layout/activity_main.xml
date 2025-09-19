@@ -12,8 +12,10 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+
+
         <TextView
-            android:id="@+id/viewCronometro"
+            android:id="@+id/viewTemporizador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="144dp"
@@ -31,7 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="96dp"
-            android:layout_marginBottom="288dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="220dp"
             android:backgroundTint="#4CAF50"
             android:fontFamily="helvetica"
             android:onClick="onClickStart"
@@ -40,15 +43,17 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/temporizador"
+            app:layout_constraintEnd_toStartOf="@+id/buttonReset"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/buttonReset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="43dp"
             android:layout_marginEnd="96dp"
-            android:layout_marginBottom="288dp"
+            android:layout_marginBottom="220dp"
             android:backgroundTint="#2196F3"
             android:fontFamily="helvetica"
             android:onClick="onClickReset"
@@ -57,7 +62,50 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/temporizador"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonStart" />
+
+        <Button
+            android:id="@+id/temporizador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#03A9F4"
+            android:fontFamily="helvetica"
+            android:onClick="onClickTemporizador"
+            android:padding="10dp"
+            android:text="Temporizador"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/cronometro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#03A9F4"
+            android:fontFamily="helvetica"
+            android:padding="10dp"
+            android:text="Cronômetro"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.022"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

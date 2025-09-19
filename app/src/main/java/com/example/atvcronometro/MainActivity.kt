@@ -1,9 +1,9 @@
 package com.example.atvcronometro
 
-import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import android.view.TextureView
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -14,7 +14,6 @@ import androidx.core.view.WindowInsetsCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -46,8 +45,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        Log.i(TAG, "Log de informação")
+        val buttonCronometro = findViewById<Button>(R.id.cronometro)
+        buttonCronometro.backgroundTintList = ColorStateList.valueOf(Color.DKGRAY)
+        buttonCronometro.setTextColor(Color.GRAY)
         runTimer()
+
     }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
@@ -107,12 +109,17 @@ class MainActivity : AppCompatActivity() {
         val millis = (elapsed % 1000) / 10
 
         val time = String.format("%02d:%02d:%02d:%02d", hours, minutes, secs, millis)
-        val timeView = findViewById<TextView>(R.id.viewCronometro)
+        val timeView = findViewById<TextView>(R.id.viewTemporizador)
         timeView.text = time
     }
 
     override fun onDestroy() {
         super.onDestroy()
         job.cancel()
+    }
+
+    fun onClickTemporizador(view: View) { // Altere o parâmetro para View
+        val intent = Intent(this, TemporizadorActivity::class.java) // Use 'this' como Context
+        startActivity(intent)
     }
 }
