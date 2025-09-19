@@ -56,6 +56,9 @@ class MainActivity : AppCompatActivity() {
         startTime = 0L
         elapsedBeforePause = 0L
         updateTimerUI(0)
+
+        val startButton = findViewById<Button>(R.id.buttonStart)
+        startButton.text = "Start"
     }
 
     fun runTimer() {
